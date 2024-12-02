@@ -1,6 +1,7 @@
 package hn.banco.creditoya.prestamo_api.model;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.sql.Date;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,16 +14,30 @@ import lombok.*;
 public class TablaAmortizacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private Long id;
 
+    // Relación M:1 con Prestamos
     @ManyToOne
-    @JoinColumn(name = "idPrestamo", referencedColumnName = "idPrestamo")
+    @JoinColumn(name = "idPrestamo")
     private Prestamo prestamo;
 
-    private int numeroCuota;
-    private double interes;
-    private double capital;
-    private double saldo;
-    private char estado;
-    private LocalDate fechaVencimiento;
+    @Column(name = "numeroCuota")
+    private Integer numeroCuota;
+
+    @Column(name = "interes")
+    private BigDecimal interes;
+
+    @Column(name = "capital")
+    private BigDecimal capital;
+
+    @Column(name = "saldo")
+    private BigDecimal saldo;
+
+    @Column(name = "estado")
+    private String estado;
+
+    @Column(name = "fechaVencimiento")
+    @Temporal(TemporalType.DATE)
+    private Date fechaVencimiento;
 }

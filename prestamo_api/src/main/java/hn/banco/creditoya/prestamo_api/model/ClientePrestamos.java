@@ -3,27 +3,23 @@ package hn.banco.creditoya.prestamo_api.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
+@Entity
+@Table(name = "cliente_prestamos")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "Direccion")
-public class Direccion {
+public class ClientePrestamos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idDireccion")
-    private Long idDireccion;
-    
-    private String pais;
-    private String departamento;
-    private String ciudad;
-    private String colonia;
-    private String referencia;
-    
+    private Long id;
+
     // Relación M:1 con Cliente
     @ManyToOne
     @JoinColumn(name = "dni")
     private Cliente cliente;
 
+    // Relación M:1 con Prestamos
+    @ManyToOne
+    @JoinColumn(name = "idPrestamo")
+    private Prestamo prestamo;
 }

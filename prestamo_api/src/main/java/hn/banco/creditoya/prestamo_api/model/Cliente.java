@@ -25,7 +25,7 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Direccion> direcciones;
-
+    
     @ManyToMany
     @JoinTable(
         name = "cliente_prestamos",

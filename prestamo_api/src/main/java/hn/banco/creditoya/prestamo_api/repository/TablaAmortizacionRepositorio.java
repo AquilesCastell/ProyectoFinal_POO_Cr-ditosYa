@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import hn.banco.creditoya.prestamo_api.model.TablaAmortizacion;
 
-public interface TablaAmortizacionRepositorio extends JpaRepository<TablaAmortizacion, Integer> {
-    List<TablaAmortizacion> findByPrestamoIdPrestamo(int prestamoId);
+public interface TablaAmortizacionRepositorio extends JpaRepository<TablaAmortizacion, Long> {
+    List<TablaAmortizacion> findByPrestamo_IdPrestamo(Long idPrestamo);
 }

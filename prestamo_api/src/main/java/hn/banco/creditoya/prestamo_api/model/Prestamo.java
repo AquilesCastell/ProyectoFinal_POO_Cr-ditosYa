@@ -1,6 +1,7 @@
 package hn.banco.creditoya.prestamo_api.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import hn.banco.creditoya.prestamo_api.enumeration.TipoPrestamo;
 import jakarta.persistence.*;
@@ -29,12 +30,16 @@ public class Prestamo {
     
      @Column(name = "cuota")
     private BigDecimal cuota;
-    private char estado;
+   
+    private String estado;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipoPrestamo")
     private TipoPrestamo tipoPrestamo;
 
-    @ManyToOne
-    @JoinColumn(name = "dni", referencedColumnName = "dni")
-    private Cliente cliente;
+    @ManyToMany(mappedBy = "prestamos")
+    private List<Cliente> clientes;
+    
+    @OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL)
+    private List<TablaAmortizacion> tablaAmortizacion;
 }
